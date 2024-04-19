@@ -13,7 +13,7 @@ const ForgetPasswordSection = ({
   return (
     <form className="forget-password">
       <Title order={3} ta={'center'}>
-        Froget Password
+        Forget Password
       </Title>
       <Input
         placeholder={'email'}
