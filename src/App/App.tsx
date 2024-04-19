@@ -4,6 +4,7 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage'
 import LoginPage from 'pages/LoginPage/LoginPage'
 import DashboardPage from 'pages/DashboardPage/DashboardPage'
 import ForgetPasswordPage from 'pages/ForgetPasswordPage/ForgetPasswordPage'
+import ChangePasswordPage from 'pages/ChangePasswordPage/ChangePasswordPage'
 
 const App = () => {
   const [accessToken, setAccessToken] = useState<string | null>(null)
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         {accessToken && <Route path="/dashboard" element={<DashboardPage />} />}
         <Route path="/forget-password" element={<ForgetPasswordPage />} />
+        <Route path="/reset-password" element={<ChangePasswordPage />} />
         <Route path="/" element={<Navigate replace={true} to="/login" />} />
       </Routes>
     </div>
