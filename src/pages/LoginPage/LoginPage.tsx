@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LoginSection from '../../common/components/organisms/LoginSection'
 import FormLayout from 'common/components/templates/FormLayout'
+import DashboardPage from 'pages/DashboardPage/DashboardPage'
 
 const LoginPage = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const handleLogin = async (values: { email: string; password: string }) => {
     try {
       const response = await fetch(
@@ -22,15 +24,28 @@ const LoginPage = () => {
 
       const data = await response.json()
       console.log('Login successful:', data)
+      const accessToken = data.accessToken
+      const refreshToken = data.refreshToken
+
+      localStorage.setItem('accessToken', accessToken)
+      localStorage.setItem('refreshToken', refreshToken)
+      setIsLoggedIn(true)
+      window.location.href = '/dashboard'
     } catch (error) {
       console.error('Error:', error)
     }
   }
 
   return (
-    <FormLayout>
-      <LoginSection title="Login" onLogin={handleLogin} />
-    </FormLayout>
+    <>
+      {isLoggedIn ? (
+        <DashboardPage />
+      ) : (
+        <FormLayout>
+          <LoginSection title="Login" onLogin={handleLogin} />
+        </FormLayout>
+      )}
+    </>
   )
 }
 

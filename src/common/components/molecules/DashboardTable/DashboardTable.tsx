@@ -1,29 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { createColumnHelper } from '@tanstack/react-table'
 import Table from 'common/components/atoms/Table'
 
+const DashboardTable = () => {
+  const [data, setData] = useState<Person[]>([])
+  const token = localStorage.getItem('accessToken')
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'https://asia-northeast1-willeder-official.cloudfunctions.net/api/lists?page=0&size=1',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        if (!response.ok) {
+          throw new Error(`API request failed with status ${response.status}`)
+        }
 
-const defaultData: Person[] = [
-  {
-    passengerName: 'Sherwin',
-    airlineName: 'Sri Lanka',
-    trips: 59,
-    airlineHeadQuaters: 'Katunayake, Sri Lanka',
-  },
-  {
-    passengerName: 'Sherwin',
-    airlineName: 'Sri Lanka',
-    trips: 59,
-    airlineHeadQuaters: 'Katunayake, Sri Lanka',
-  },
-  {
-    passengerName: 'Sherwin',
-    airlineName: 'Sri Lanka',
-    trips: 59,
-    airlineHeadQuaters: 'Katunayake, Sri Lanka',
-  },
-]
+        const responseData = await response.json()
+        setData(responseData.data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, []) // Empty dependency array to fetch data only once
+
+  return <div>{data && <Table data={data} columns={columns} />}</div>
+}
 
 const columnHelper = createColumnHelper<Person>()
 
@@ -45,13 +55,6 @@ const columns = [
     header: () => <span>Head Quaters</span>,
     cell: (info) => info.renderValue(),
   }),
-
 ]
-const DashboardTable = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [data, setData] = React.useState(() => [...defaultData])
-
-  return <>{data && <Table data={data} columns={columns} />}</>
-}
 
 export default DashboardTable
