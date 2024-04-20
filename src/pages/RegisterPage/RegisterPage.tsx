@@ -29,10 +29,11 @@ const RegisterPage = () => {
       )
 
       if (response.ok) {
-        if (response.ok) {
-          window.alert('User registered, Please Login')
-        }
+        window.alert('User registered, Please Login')
         window.location.href = '/login'
+      } else {
+        const responseData = await response.json()
+        window.alert(responseData.errorMessage)
       }
     } catch (error) {
       console.error('Error:', error)

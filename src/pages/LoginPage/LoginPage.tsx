@@ -17,20 +17,19 @@ const LoginPage = () => {
           body: JSON.stringify(values),
         }
       )
-
-      if (!response.ok) {
-        throw new Error('Login failed')
-      }
-
       const data = await response.json()
-      console.log('Login successful:', data)
-      const accessToken = data.accessToken
-      const refreshToken = data.refreshToken
 
-      localStorage.setItem('accessToken', accessToken)
-      localStorage.setItem('refreshToken', refreshToken)
-      setIsLoggedIn(true)
-      window.location.href = '/dashboard'
+      if (response.ok) {
+        const accessToken = data.accessToken
+        const refreshToken = data.refreshToken
+
+        localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('refreshToken', refreshToken)
+        setIsLoggedIn(true)
+        window.location.href = '/dashboard'
+      } else {
+        window.alert(data.errorMessage)
+      }
     } catch (error) {
       console.error('Error:', error)
     }

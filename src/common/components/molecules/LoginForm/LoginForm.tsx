@@ -12,9 +12,21 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
       password: '',
       email: '',
     },
-
     validate: {
-      // email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) =>
+        !value
+          ? 'Email is required'
+          : /^\S+@\S+$/.test(value)
+          ? null
+          : 'Invalid email',
+      password: (value) =>
+        !value
+          ? 'Password is required'
+          : /^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/.test(
+              value
+            )
+          ? null
+          : 'Invalid password',
     },
   })
 
@@ -29,12 +41,14 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
         placeholder={'Enter your username'}
         label={'Email/Username'}
         type={'text'}
+        error={form.errors.email}
         {...form.getInputProps('email')}
       />
       <Input
         placeholder={'Enter your password'}
         label={'Password'}
         type={'password'}
+        error={form.errors.password}
         {...form.getInputProps('password')}
       />
       <Anchor href={'/forgot-password'}>
