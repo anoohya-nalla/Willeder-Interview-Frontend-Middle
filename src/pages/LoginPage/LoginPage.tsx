@@ -1,11 +1,10 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 import LoginSection from '../../common/components/organisms/LoginSection'
 import FormLayout from 'common/components/templates/FormLayout'
+import DashboardPage from 'pages/DashboardPage/DashboardPage'
 
-const LoginPage: React.FC = () => {
-  const navigate = useNavigate()
-
+const LoginPage = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const handleLogin = async (values: { email: string; password: string }) => {
     try {
       const response = await fetch(
@@ -26,8 +25,8 @@ const LoginPage: React.FC = () => {
 
         localStorage.setItem('accessToken', accessToken)
         localStorage.setItem('refreshToken', refreshToken)
-
-        navigate('/dashboard')
+        setIsLoggedIn(true)
+        window.location.href = '/dashboard'
       } else {
         window.alert(data.errorMessage)
       }
@@ -38,9 +37,13 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <FormLayout>
-        <LoginSection title="Login" onLogin={handleLogin} />
-      </FormLayout>
+      {isLoggedIn ? (
+        <DashboardPage />
+      ) : (
+        <FormLayout>
+          <LoginSection title="Login" onLogin={handleLogin} />
+        </FormLayout>
+      )}
     </>
   )
 }
