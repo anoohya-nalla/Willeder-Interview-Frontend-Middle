@@ -3,14 +3,14 @@ import ChangePasswordSection from 'common/components/organisms/ChangePasswordSec
 import FormLayout from 'common/components/templates/FormLayout'
 
 interface FormData {
-  oldPassword: string
-  newPassword: string
+  password: string
+  confirmPassword: string
 }
 
 const ChangePasswordPage: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    oldPassword: '',
-    newPassword: '',
+    password: '',
+    confirmPassword: '',
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +22,7 @@ const ChangePasswordPage: React.FC = () => {
     try {
       const token = new URLSearchParams(window.location.search).get('token')
       const requestData = {
-        password: formData.newPassword,
+        password: formData.password,
         tokenId: token,
       }
 

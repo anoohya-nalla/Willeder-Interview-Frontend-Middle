@@ -1,6 +1,6 @@
 interface changePasswordProps {
-  newPassword: string
-  oldPassword: string
+  confirmPassword: string
+  password: string
 }
 interface ChangePasswordFormProps {
   data: changePasswordProps

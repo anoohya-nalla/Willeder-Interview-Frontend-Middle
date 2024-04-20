@@ -26,26 +26,34 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
       })}
     >
       <Input
-        placeholder={'placeholder'}
-        label={'Username'}
+        placeholder={'Enter your username'}
+        label={'Email/Username'}
         type={'text'}
         {...form.getInputProps('email')}
       />
       <Input
-        placeholder={'placeholder'}
+        placeholder={'Enter your password'}
         label={'Password'}
         type={'password'}
         {...form.getInputProps('password')}
       />
-      <Anchor href={'/forget-password'}>
+      <Anchor href={'/forgot-password'}>
         <Text ta={'right'} color="blue.5" td={'underline'} fw={700} fz={'xxs'}>
-          Forget Password
+          Forgot Password
         </Text>
       </Anchor>
       <div className="button-wrapper">
         <Button fullWidth type="submit">
           Submit
         </Button>
+      </div>
+      <div className="signup-container">
+        <Text fz={'xxs'}>Don’t have an account yet?</Text>
+        <Anchor className="signup-anchor" href={'/register'}>
+          <Text color="blue.5" td={'underline'} fw={700} fz={'xxs'}>
+            Sign up
+          </Text>
+        </Anchor>
       </div>
     </form>
   )

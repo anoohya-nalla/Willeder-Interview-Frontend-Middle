@@ -25,44 +25,53 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
       })}
     >
       <Input
-        placeholder={'placeholder'}
-        label={'Username'}
+        placeholder={'Enter your e-mail address'}
+        label={'Email'}
         type={'text'}
         {...form.getInputProps('email')}
       />
       <Input
-        placeholder={'placeholder'}
+        placeholder={'Enter your password'}
         label={'Password'}
         type={'password'}
         {...form.getInputProps('password')}
       />
       <Input
-        placeholder={'placeholder'}
+        placeholder={'Enter your name'}
         label={'Name'}
         type={'name'}
         {...form.getInputProps('name')}
       />
       <Input
-        placeholder={'placeholder'}
+        placeholder={'Enter your address'}
         label={'Address'}
         type={'address'}
         {...form.getInputProps('address')}
       />
       <Input
-        placeholder={'placeholder'}
+        placeholder={'Enter your phone number'}
         label={'Phone'}
         type={'phone'}
         {...form.getInputProps('phone')}
       />
-      <Anchor href={'/login'}>
-        <Text ta={'right'} color="blue.5" td={'underline'} fw={700} fz={'xxs'}>
-          Login
-        </Text>
-      </Anchor>
       <div className="button-wrapper">
         <Button fullWidth type="submit">
           Submit
         </Button>
+      </div>
+      <div className="login-container">
+        <Text fz={'xxs'}>Already have an account?</Text>
+        <Anchor className="login-anchor" href={'/login'}>
+          <Text
+            ta={'right'}
+            color="blue.5"
+            td={'underline'}
+            fw={700}
+            fz={'xxs'}
+          >
+            Login
+          </Text>
+        </Anchor>
       </div>
     </form>
   )
