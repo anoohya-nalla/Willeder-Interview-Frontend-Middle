@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import RegisterPage from 'pages/RegisterPage/RegisterPage'
 import LoginPage from 'pages/LoginPage/LoginPage'
 import DashboardPage from 'pages/DashboardPage/DashboardPage'
-import ForgetPasswordPage from 'pages/ForgetPasswordPage/ForgetPasswordPage'
+import ForgotPasswordPage from 'pages/ForgotPasswordPage/ForgotPasswordPage'
 import ChangePasswordPage from 'pages/ChangePasswordPage/ChangePasswordPage'
 
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         {accessToken && <Route path="/dashboard" element={<DashboardPage />} />}
-        <Route path="/forget-password" element={<ForgetPasswordPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ChangePasswordPage />} />
         <Route path="/" element={<Navigate replace={true} to="/login" />} />
       </Routes>

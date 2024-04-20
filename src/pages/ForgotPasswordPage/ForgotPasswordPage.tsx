@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import ForgetPasswordSection from '../../common/components/organisms/ForgetPasswordSection'
 import FormLayout from 'common/components/templates/FormLayout'
+import ForgotPasswordSection from 'common/components/organisms/ForgotPasswordSection/ForgotPasswordSection'
 
-const ForgetPasswordPage: React.FC = () => {
+const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState<string>('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,13 +27,13 @@ const ForgetPasswordPage: React.FC = () => {
         window.alert('Password reset link sent to your email!')
       }
     } catch (error) {
-      console.error('Forget password failed')
+      console.error('failed')
     }
   }
 
   return (
     <FormLayout>
-      <ForgetPasswordSection
+      <ForgotPasswordSection
         onChange={handleChange}
         onSubmit={handleSubmit}
         data={email}
@@ -42,4 +42,4 @@ const ForgetPasswordPage: React.FC = () => {
   )
 }
 
-export default ForgetPasswordPage
+export default ForgotPasswordPage

@@ -3,25 +3,25 @@ import Button from 'common/components/atoms/Button'
 import Input from 'common/components/atoms/Input'
 import { Title, Anchor, Text } from '@mantine/core'
 
-import './ForgetPasswordSection.scss'
+import './ForgotPasswordSection.scss'
 
-const ForgetPasswordSection = ({
+const ForgotPasswordSection = ({
   onChange,
   onSubmit,
   data,
-}: ForgetFormProps) => {
+}: ForgotFormProps) => {
   return (
-    <form className="forget-password">
+    <form className="forgot-password">
       <Title order={3} ta={'center'}>
-        Forget Password
+        Forgot Password
       </Title>
       <Input
-        placeholder={'email'}
+        placeholder={'Enter your username'}
         onChange={onChange}
-        label={'Forget Password'}
+        label={'Email/Username'}
         value={data}
         type={'text'}
-        name="forgetPassword"
+        name="forgotPassword"
       />
       <div className="button-wrapper">
         <Button onClick={onSubmit} fullWidth>
@@ -37,4 +37,4 @@ const ForgetPasswordSection = ({
   )
 }
 
-export default ForgetPasswordSection
+export default ForgotPasswordSection
